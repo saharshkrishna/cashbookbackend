@@ -1,10 +1,10 @@
 //importing modules
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
 const bodyParser = require('body-parser');
 const connectDB = require('./MongoDb/connect.js');
 const cors = require('cors');
-const adminRoutes = require('./routes/admindashboard.route');
 const userRoutes = require('./routes/user.route')
 
 
@@ -25,8 +25,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api/admin',adminRoutes)
 app.use('/api/user',userRoutes)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 
 
